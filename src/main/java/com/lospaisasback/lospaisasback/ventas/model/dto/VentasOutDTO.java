@@ -1,5 +1,6 @@
 package com.lospaisasback.lospaisasback.ventas.model.dto;
 
+import com.lospaisasback.lospaisasback.compartidos.model.dto.ResultadoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VentasOutDTO {
+public class VentasOutDTO extends ResultadoDTO {
 
-    private VentasDTO ventasDTO;
-    private List<VentasDTO> listVentasDTO;
+    private VentaDTO ventaDTO;
+    private List<VentaDTO> listVentaDTO;
     private Long totalVentas;
 }

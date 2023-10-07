@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VentasDTO {
+public class VentaDTO {
 
     private Long idVenta;
     private Cliente cliente;

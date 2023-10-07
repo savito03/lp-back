@@ -18,7 +18,6 @@ public class ProveedorDTO extends PersonaDTO {
 
     private Long idProveedor;
     private String nombreEmpresa;
-
     private String nombre;
     private String apellido;
     private String segundoApellido;

@@ -1,6 +1,6 @@
 package com.lospaisasback.lospaisasback.ventas.model.mapper;
 
-import com.lospaisasback.lospaisasback.ventas.model.dto.VentasDTO;
+import com.lospaisasback.lospaisasback.ventas.model.dto.VentaDTO;
 import com.lospaisasback.lospaisasback.ventas.model.entity.Venta;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ public class VentaMapperService {
         this.modelMapper = modelMapper;
     }
 
-    public VentasDTO toDTO(Venta venta) {
-        return modelMapper.map(venta, VentasDTO.class);
+    public VentaDTO toDTO(Venta venta) {
+        return modelMapper.map(venta, VentaDTO.class);
     }
 
-    public Venta toEntity(VentasDTO ventaDTO) {
+    public Venta toEntity(VentaDTO ventaDTO) {
         return modelMapper.map(ventaDTO, Venta.class);
     }
 }

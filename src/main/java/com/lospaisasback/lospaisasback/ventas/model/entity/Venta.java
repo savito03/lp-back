@@ -19,7 +19,8 @@ public class Venta {
     @Column(name = "LPIDVENTA")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LP_VENTA_SEQ")
     private Long idVenta;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LPIDCLIENTE")
     private Cliente cliente;
 
