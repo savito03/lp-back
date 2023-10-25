@@ -78,6 +78,20 @@ public class ProveedorService implements IProveedorService {
             return resultadoDTO;
         }
 
+        Proveedor proveedorExistente = proveedorRepository.findByNumeroIdentificacion(proveedorDTO.getNumeroIdentificacion());
+
+        if (proveedorExistente != null) {
+            resultadoDTO.setMensaje("Ya existe un proveedor con el nit: " + proveedorDTO.getNumeroIdentificacion());
+            return resultadoDTO;
+        }
+
+        StringBuilder nombreCompleto = new StringBuilder();
+        nombreCompleto.append(proveedorDTO.getNombre()).append(" ").append(proveedorDTO.getApellido());
+        if (proveedorDTO.getSegundoApellido() != null && !proveedorDTO.getSegundoApellido().isEmpty()) {
+            nombreCompleto.append(" ").append(proveedorDTO.getSegundoApellido());
+        }
+        proveedorDTO.setNombreCompleto(nombreCompleto.toString());
+
         Proveedor proveedor = proveedorMapperService.toEntity(proveedorDTO);
 
         try {
@@ -102,6 +116,15 @@ public class ProveedorService implements IProveedorService {
             resultadoDTO.setMensaje("El proveedor no puede ser nulo");
             return resultadoDTO;
         }
+
+        StringBuilder nombreCompleto = new StringBuilder();
+        nombreCompleto.append(proveedorDTO.getNombre()).append(" ").append(proveedorDTO.getApellido());
+
+        if (proveedorDTO.getSegundoApellido() != null && !proveedorDTO.getSegundoApellido().isEmpty()) {
+            nombreCompleto.append(" ").append(proveedorDTO.getSegundoApellido());
+        }
+
+        proveedorDTO.setNombreCompleto(nombreCompleto.toString());
 
         Proveedor proveedor = proveedorMapperService.toEntity(proveedorDTO);
 

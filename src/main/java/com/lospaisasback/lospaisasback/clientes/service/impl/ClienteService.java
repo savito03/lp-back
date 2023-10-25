@@ -78,6 +78,26 @@ public class ClienteService implements IClienteService {
             return resultadoDTO;
         }
 
+        if (clienteDTO.getNumeroIdentificacion() == null || clienteDTO.getNumeroIdentificacion().isEmpty()) {
+            resultadoDTO.setMensaje("La cedula no puede ser nula o vacia");
+            return resultadoDTO;
+        }
+
+        Cliente clienteExistente = clienteRepository.findByNumeroIdentificacion(clienteDTO.getNumeroIdentificacion());
+
+        if (clienteExistente != null) {
+            resultadoDTO.setMensaje("Ya existe un cliente con la cedula: " + clienteDTO.getNumeroIdentificacion());
+            return resultadoDTO;
+        }
+
+        StringBuilder nombreCompleto = new StringBuilder();
+
+        nombreCompleto.append(clienteDTO.getNombre()).append(" ").append(clienteDTO.getApellido());
+        if (clienteDTO.getSegundoApellido() != null && !clienteDTO.getSegundoApellido().isEmpty())
+            nombreCompleto.append(" ").append(clienteDTO.getSegundoApellido());
+
+        clienteDTO.setNombreCompleto(nombreCompleto.toString());
+
         Cliente cliente = clienteMapperService.toEntity(clienteDTO);
 
         try {
@@ -102,6 +122,16 @@ public class ClienteService implements IClienteService {
             resultadoDTO.setMensaje("El cliente no puede ser nulo");
             return resultadoDTO;
         }
+
+        StringBuilder nombreCompleto = new StringBuilder();
+
+        nombreCompleto.append(clienteDTO.getNombre()).append(" ").append(clienteDTO.getApellido());
+
+        if (clienteDTO.getSegundoApellido() != null && !clienteDTO.getSegundoApellido().isEmpty()) {
+            nombreCompleto.append(" ").append(clienteDTO.getSegundoApellido());
+        }
+
+        clienteDTO.setNombreCompleto(nombreCompleto.toString());
 
         Cliente cliente = clienteMapperService.toEntity(clienteDTO);
 

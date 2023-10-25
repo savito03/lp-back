@@ -76,6 +76,27 @@ public class EmpleadoService implements IEmpleadoService {
             return resultadoDTO;
         }
 
+        if (empleadoDTO.getNumeroIdentificacion() == null || empleadoDTO.getNumeroIdentificacion().isEmpty()) {
+            resultadoDTO.setMensaje("La cedula no puede ser vacia");
+            return resultadoDTO;
+        }
+
+        Empleado empleadoExistente = empleadoRepository.findByNumeroIdentificacion(empleadoDTO.getNumeroIdentificacion());
+
+        if (empleadoExistente != null) {
+            resultadoDTO.setMensaje("Ya existe un empleado con la cedula: " + empleadoDTO.getNumeroIdentificacion());
+            return resultadoDTO;
+        }
+
+
+        StringBuilder nombreCompleto = new StringBuilder();
+        nombreCompleto.append(empleadoDTO.getNombre()).append(" ").append(empleadoDTO.getApellido());
+        if (empleadoDTO.getSegundoApellido() != null && !empleadoDTO.getSegundoApellido().isEmpty()) {
+            nombreCompleto.append(" ").append(empleadoDTO.getSegundoApellido());
+        }
+
+        empleadoDTO.setNombreCompleto(nombreCompleto.toString());
+
         Empleado empleado = empleadoMapperService.toEntity(empleadoDTO);
 
         try {
@@ -99,6 +120,14 @@ public class EmpleadoService implements IEmpleadoService {
             resultadoDTO.setMensaje("El empleado no puede ser nulo");
             return resultadoDTO;
         }
+
+        StringBuilder nombreCompleto = new StringBuilder();
+        nombreCompleto.append(empleadoDTO.getNombre()).append(" ").append(empleadoDTO.getApellido());
+        if (empleadoDTO.getSegundoApellido() != null && !empleadoDTO.getSegundoApellido().isEmpty()) {
+            nombreCompleto.append(" ").append(empleadoDTO.getSegundoApellido());
+        }
+
+        empleadoDTO.setNombreCompleto(nombreCompleto.toString());
 
         Empleado empleado = empleadoMapperService.toEntity(empleadoDTO);
 
