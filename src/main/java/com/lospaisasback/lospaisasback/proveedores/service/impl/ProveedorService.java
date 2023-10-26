@@ -78,7 +78,7 @@ public class ProveedorService implements IProveedorService {
             return resultadoDTO;
         }
 
-        Proveedor proveedorExistente = proveedorRepository.findByNumeroIdentificacion(proveedorDTO.getNumeroIdentificacion());
+        Proveedor proveedorEx    istente = proveedorRepository.findByNumeroIdentificacion(proveedorDTO.getNumeroIdentificacion());
 
         if (proveedorExistente != null) {
             resultadoDTO.setMensaje("Ya existe un proveedor con el nit: " + proveedorDTO.getNumeroIdentificacion());

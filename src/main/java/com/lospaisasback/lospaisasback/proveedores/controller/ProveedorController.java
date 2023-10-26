@@ -15,7 +15,7 @@ public class ProveedorController {
     @Autowired
     private IProveedorService proveedorService;
 
-    @GetMapping("/obtenerTodosLosProveedores")
+    @GetMapping("/  ")
     public ProveedorOutDTO obtenerTodosLosProveedores() {
         return proveedorService.obtenerTodosLosProveedores();
     }
